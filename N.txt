@@ -1,3 +1,20 @@
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local whitelist = loadstring(game:HttpGet("URL_DA_SUA_WHITELIST_AQUI"))()
+
+if not whitelist then
+    LocalPlayer:Kick("Erro ao carregar whitelist")
+    return
+end
+
+if not whitelist[LocalPlayer.Name] then
+    LocalPlayer:Kick("Você não está na whitelist para usar este script.")
+    return
+end
+
+print("Usuário autorizado:", LocalPlayer.Name)
+
 game:GetService("Players").LocalPlayer.Idled:Connect(function()
     game:GetService("VirtualUser"):Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
     wait(1)
@@ -27,7 +44,7 @@ tabFarme:AddButton("Gamepass AutoLift", function()
     end
 end, "Desbloqueia a gamepass de AutoLift gratis")
 
-tabFarme:AddSwitch("Auto Weight", function(Value)
+tabFarme:AddSwitch("Farmar com o Peso", function(Value)
     _G.AutoWeight = Value
     
     if Value then
@@ -79,13 +96,13 @@ task.spawn(function()
     end
 end)
 
-tabFarme:AddSwitch("Auto Eat Egg", function(state)
+tabFarme:AddSwitch("Comer Ovo Automaticamente", function(state)
     autoEatEnabled = state
 end)
 
 tabFarme:AddLabel("Teleport").TextSize = 25
 
-tabFarme:AddButton("Muscle King Gym", function()
+tabFarme:AddButton("Ilha do Rei", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -343,9 +360,9 @@ tabMisc:AddSwitch("Anti-AFK System", function(bool)
     end
 end, true)
 
-tabMisc:AddLabel("Protection").TextSize = 20
+tabMisc:AddLabel("Protecao").TextSize = 20
 
-local switch = tabMisc:AddSwitch("Lock Position", function(Value)
+local switch = tabMisc:AddSwitch("Travar Personagem", function(Value)
     if Value then
         
         local currentPos = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
@@ -363,7 +380,7 @@ local switch = tabMisc:AddSwitch("Lock Position", function(Value)
     end
 end)
 
-tabMisc:AddSwitch("Anti Knockback", function(Value)
+tabMisc:AddSwitch("Nao Ser Empurrado", function(Value)
     if Value then
         local playerName = game.Players.LocalPlayer.Name
         local rootPart = game.Workspace:FindFirstChild(playerName):FindFirstChild("HumanoidRootPart")
@@ -384,7 +401,7 @@ end)
 
 tabMisc:AddLabel("Misc").TextSize = 20
 
-tabMisc:AddButton("Remove Portals", function()
+tabMisc:AddButton("Remover Portal", function()
     for _, portal in pairs(game:GetDescendants()) do
         if portal.Name == "RobloxForwardPortals" then
             portal:Destroy()
@@ -426,9 +443,9 @@ local timeDropdown = tabMisc:AddDropdown("Mudar o Tempo", function(selection)
     })
 end)
 
-timeDropdown:Add("Night")
-timeDropdown:Add("Day")
-timeDropdown:Add("Midnight")
+timeDropdown:Add("Noite")
+timeDropdown:Add("Dia")
+timeDropdown:Add("Madrugada")
 
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
@@ -771,7 +788,7 @@ end)
 
 local tabteleport = window:AddTab("Teleport")
 
-tabteleport:AddButton("Spawn", function()
+tabteleport:AddButton("Inicio", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -784,7 +801,7 @@ tabteleport:AddButton("Spawn", function()
     })
 end)
 
-tabteleport:AddButton("Secret Area", function()
+tabteleport:AddButton("Ilha Secreta", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -797,7 +814,7 @@ tabteleport:AddButton("Secret Area", function()
     })
 end)
 
-tabteleport:AddButton("Tiny Island", function()
+tabteleport:AddButton("Ilha de Menos 10k Forca", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -810,7 +827,7 @@ tabteleport:AddButton("Tiny Island", function()
     })
 end)
 
-tabteleport:AddButton("Teleport Frozen", function()
+tabteleport:AddButton("Ilha de 1 Rebirth", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -823,7 +840,7 @@ tabteleport:AddButton("Teleport Frozen", function()
     })
 end)
 
-tabteleport:AddButton("Mythical", function()
+tabteleport:AddButton("Ilha de 5 Rebirths", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -836,7 +853,7 @@ tabteleport:AddButton("Mythical", function()
     })
 end)
 
-tabteleport:AddButton("Inferno", function()
+tabteleport:AddButton("Ilha de 15 Rebirths", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -849,7 +866,7 @@ tabteleport:AddButton("Inferno", function()
     })
 end)
 
-tabteleport:AddButton("Legend", function()
+tabteleport:AddButton("Ilha de 30 Rebirths", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -862,7 +879,7 @@ tabteleport:AddButton("Legend", function()
     })
 end)
 
-tabteleport:AddButton("Muscle King Gym", function()
+tabteleport:AddButton("Ilha do Rei", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -875,7 +892,7 @@ tabteleport:AddButton("Muscle King Gym", function()
     })
 end)
 
-tabteleport:AddButton("Jungle", function()
+tabteleport:AddButton("Ilha de 60 Rebirths", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -888,7 +905,7 @@ tabteleport:AddButton("Jungle", function()
     })
 end)
 
-tabteleport:AddButton("Brawl Lava", function()
+tabteleport:AddButton("Ilha de Lava [Brawl]", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -901,7 +918,7 @@ tabteleport:AddButton("Brawl Lava", function()
     })
 end)
 
-tabteleport:AddButton("Brawl Desert", function()
+tabteleport:AddButton("Ilha do Deserto [Brawl]", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -914,7 +931,7 @@ tabteleport:AddButton("Brawl Desert", function()
     })
 end)
 
-tabteleport:AddButton("Brawl Regular", function()
+tabteleport:AddButton("Ilha do Ringue [Brawl]", function()
     local player = game.Players.LocalPlayer
     local character = player.Character or player.CharacterAdded:Wait()
     local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
@@ -926,36 +943,3 @@ tabteleport:AddButton("Brawl Regular", function()
         Duration = 0
     })
 end)
-
-local nothingLabel = tabteleport:AddLabel("")
-
-tabteleport:AddLabel("Ilha de Baixo da agua").TextSize = 20
-
-tabteleport:AddButton("Safe Island", function()
-    local player = game.Players.LocalPlayer
-    local character = player.Character or player.CharacterAdded:Wait()
-    local humanoidRootPart = character:WaitForChild("HumanoidRootPart")
-
-    local posX, posY, posZ = 100000, -200, 100000
-
-    local platform = Instance.new("Part")
-    platform.Size = Vector3.new(50, 1, 50)
-    platform.Position = Vector3.new(posX, posY - 3, posZ)
-    platform.Anchored = true
-    platform.CanCollide = true
-    platform.Color = Color3.fromRGB(255, 0, 0)
-    platform.Name = "SafePlatform"
-    platform.Parent = workspace
-
-    task.wait(0.2)
-
-    humanoidRootPart.CFrame = CFrame.new(posX, posY, posZ)
-    game:GetService("StarterGui"):SetCore("SendNotification", {
-        Title = "Teletransporte",
-        Text = "Teleported",
-        Duration = 0
-    })
-
-
-end)
-
