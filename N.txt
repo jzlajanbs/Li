@@ -657,7 +657,7 @@ end)
 
 tabMisc:AddLabel("Recompensas").TextSize = 20
 
-tabMisc:AddButton("Claim All Chests", function()
+tabMisc:AddButton("Coletar Todos os Baus", function()
     local chestEvent = game.ReplicatedStorage.rEvents.checkChestRemote
     local chests = {
         "Golden Chest","Enchanted Chest","Mythical Chest",
@@ -669,7 +669,7 @@ tabMisc:AddButton("Claim All Chests", function()
     end
 end)
 
-tabMisc:AddButton("Claim All Codes", function()
+tabMisc:AddButton("Resgatar Todos os Codigos", function()
     local codes = {
         "Epicreward500","Frostgems10","Galaxycrystal50","Launch250","Megalift50",
         "Millionwarriors","Musclestorm50","Spacegems50","Speedy50","Skyagility50",
@@ -943,6 +943,7 @@ tabteleport:AddButton("Ilha do Ringue [Brawl]", function()
         Duration = 0
     })
 end)
+
 
 
 
