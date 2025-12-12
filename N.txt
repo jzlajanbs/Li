@@ -8,19 +8,12 @@ if not whitelist then
     return
 end
 
-local function checkUser()
-    for _, allowedUser in pairs(whitelist) do
-        if username == allowedUser then
-            return true
-        end
-    end
-    return false
-end
-
-if not checkUser() then
+if not whitelist[username] then
     player:Kick("Voce nao esta na Whitelist para usar esse script")
     return
 end
+
+print("Usuário autorizado:", username)
 
 game:GetService("Players").LocalPlayer.Idled:Connect(function()
     game:GetService("VirtualUser"):Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
@@ -950,5 +943,6 @@ tabteleport:AddButton("Ilha do Ringue [Brawl]", function()
         Duration = 0
     })
 end)
+
 
 
