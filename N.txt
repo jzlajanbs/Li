@@ -1,7 +1,7 @@
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
 
-local whitelist = loadstring(game:HttpGet("URL_DA_SUA_WHITELIST_AQUI"))()
+local whitelist = loadstring(game:HttpGet("https://raw.githubusercontent.com/jzlajanbs/Wl/refs/heads/main/Lw"))()
 
 if not whitelist then
     LocalPlayer:Kick("Erro ao carregar whitelist")
@@ -943,3 +943,4 @@ tabteleport:AddButton("Ilha do Ringue [Brawl]", function()
         Duration = 0
     })
 end)
+
