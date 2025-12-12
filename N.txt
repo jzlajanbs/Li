@@ -1,19 +1,26 @@
-local Players = game:GetService("Players")
-local LocalPlayer = Players.LocalPlayer
-
 local whitelist = loadstring(game:HttpGet("https://raw.githubusercontent.com/jzlajanbs/Wl/refs/heads/main/Lw"))()
 
+local player = game.Players.LocalPlayer
+local username = player.Name
+
 if not whitelist then
-    LocalPlayer:Kick("Erro ao carregar whitelist")
+    player:Kick("Erro ao carregar whitelist")
     return
 end
 
-if not whitelist[LocalPlayer.Name] then
-    LocalPlayer:Kick("Você não está na whitelist para usar este script.")
-    return
+local function checkUser()
+    for _, allowedUser in pairs(whitelist) do
+        if username == allowedUser then
+            return true
+        end
+    end
+    return false
 end
 
-print("Usuário autorizado:", LocalPlayer.Name)
+if not checkUser() then
+    player:Kick("Voce nao esta na Whitelist para usar esse script")
+    return
+end
 
 game:GetService("Players").LocalPlayer.Idled:Connect(function()
     game:GetService("VirtualUser"):Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
@@ -943,4 +950,5 @@ tabteleport:AddButton("Ilha do Ringue [Brawl]", function()
         Duration = 0
     })
 end)
+
 
